@@ -34,7 +34,7 @@ Run the compiled executable:
 **Windows:**
 
 ```bash
-STRF.exe
+.\STRF.exe
 ```
 
 **Linux/macOS:**
@@ -84,3 +84,4 @@ Average Turnaround Time = 4.33
 Average Waiting Time     = 1.33
 Average Response Time    = 0.00
 ```
+
