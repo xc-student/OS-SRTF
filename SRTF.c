@@ -28,9 +28,6 @@ int all_completed(Process p[], int n) {
   return 1;
 }
 
-/* ------------------------- */
-/* 修正版：真实比例甘特图输出 (确保只使用 ASCII 空格) */
-/* ------------------------- */
 void print_gantt_bar_style(int gantt[], int max_time) {
   if (max_time <= 0)
     return;
@@ -67,10 +64,8 @@ void print_gantt_bar_style(int gantt[], int max_time) {
   seg[seg_count].end = max_time;
   seg_count++;
 
-  /* --------------------------------- */
   /* Row 1: print time scale           */
-  /* --------------------------------- */
-  // 确保这里只有 6 个标准的 ASCII 空格
+
   printf("      "); // indentation for cleaner look
   for (int i = 0; i < seg_count; i++) {
     printf("%d", seg[i].start);
@@ -82,10 +77,8 @@ void print_gantt_bar_style(int gantt[], int max_time) {
   }
   printf("%d\n", max_time);
 
-  /* --------------------------------- */
   /* Row 2: print timeline bars        */
-  /* --------------------------------- */
-  // 确保这里只有 6 个标准的 ASCII 空格
+
   printf("      ");
   for (int i = 0; i < seg_count; i++) {
     int dur = seg[i].end - seg[i].start;
@@ -95,11 +88,9 @@ void print_gantt_bar_style(int gantt[], int max_time) {
       printf("-");
   }
   printf("|\n");
-
-  /* --------------------------------- */
+  
   /* Row 3: print Gantt blocks         */
-  /* --------------------------------- */
-  // 确保这里只有 6 个标准的 ASCII 空格
+
   printf("      ");
   for (int i = 0; i < seg_count; i++) {
     int pid = seg[i].pid;
@@ -156,11 +147,11 @@ int run_simulation() {
     return 1;
   }
 
-  // 分段接收输入部分的代码，保持不变，因为这是您要求的逻辑修改
+
   for (int i = 0; i < n; i++) {
     int at, bt;
 
-    // 1. 获取 Arrival Time
+
     printf("Process %d - Enter Arrival Time: ", i + 1);
     if (scanf("%d", &at) != 1) {
       printf("Invalid input for Arrival Time.\n");
@@ -171,7 +162,7 @@ int run_simulation() {
       return 1;
     }
 
-    // 2. 获取 Burst Time
+
     printf("Process %d - Enter Burst Time: ", i + 1);
     if (scanf("%d", &bt) != 1) {
       printf("Invalid input for Burst Time.\n");
@@ -182,7 +173,7 @@ int run_simulation() {
       return 1;
     }
 
-    // 初始化进程数据
+
     p[i].pid = i + 1;
     p[i].arrival = at;
     p[i].burst = bt;
@@ -266,7 +257,6 @@ int run_simulation() {
     p[i].waiting = p[i].turnaround - p[i].burst;
   }
 
-  /* 打印修正后的甘特图 (修复了隐藏字符问题) */
   print_gantt_bar_style(gantt, max_time);
 
   printf("\nSRTF Performance Results:\n");
@@ -308,4 +298,5 @@ int main() {
   } while (choice == 'A' || choice == 'a');
 
   return 0;
+
 }
